@@ -35,22 +35,45 @@ def get_id(url):
 
 
     response = requests.request("GET", url, headers=headers, data=payload).text
+    soup=BeautifulSoup(response, features="html.parser")
 
     if '/profile/' in response:
-        print ('User ID: ', response.split("/profile/")[1].split('\"')[0])
+        User_ID =  response.split("/profile/")[1].split('\"')[0]
+        print ('User ID: ', User_ID)
+    elif 'entity_id' in response:
+        User_ID =  response.split("entity_id")[1].split('"')[2]
+        print ('User ID: ', User_ID)
     else:
         print("Not Found Without Proxy")
         try:
             response = requests.request("GET", url, headers=headers, data=payload, proxies={'http': proxy, 'https': proxy}).text
-            print ('User ID: ', response.split("/profile/")[1].split('\"')[0])
+            if '/profile/' in response:
+                User_ID =  response.split("/profile/")[1].split('\"')[0]
+                print ('User ID: ', User_ID)
+            elif 'entity_id' in response:
+                User_ID =  response.split("entity_id")[1].split('"')[2]
+                print ('User ID: ', User_ID)
         except:
             print ("Not Found")
+    
+
+
+    try: 
+        profile_name = soup.find("h1", {"class":"x1heor9g x1qlqyl8 x1pd3egz x1a2a7pz"}).text
+        print ("Profile Name: ", profile_name)
+    except:
+        profile_name = "Not Found"
+        print ("Profile Name Not Found")
+
+    with open("profile_info.txt", "a") as f:
+        f.write("Profile Name: " + profile_name + "\n")
+        f.write("User ID: " + User_ID + "\n")
 
     return response
 
 
 
-url = "https://www.facebook.com/anna.brunello.12"
+url = "https://www.facebook.com/profile.php?id=100082544292833"
 
 get_id(url)
 
