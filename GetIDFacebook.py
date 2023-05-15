@@ -73,7 +73,7 @@ def get_id(url):
 
 
 
-url = "https://www.facebook.com/profile.php?id=100082544292833"
+url = "https://www.facebook.com/ahmad.boos.1675?comment_id=Y29tbWVudDo1ODY3MTAwMDM1MTM3NThfNDcwMDE3NDMxOTc1NTIz&__cft__[0]=AZV3DTdtygmVHQRBENHGzXya8ixcvp0XpXRpbRsswDRgRcDZsMXuTMHYw8dspFqDhHqHo0ZncR95KQR1NsET8r-DXvrlri9tbdAhX3RFH17b2Vu2N8CiZxHGlmECoFbux5UTihzW6kW11sb-MiuKnsfslVCyR0gQKUCCGuCV4vg008O_hCdtF7uU7BgN-6WZRQffF8SDHX5Gig0ppbl3TRAF&__tn__=R]-R"
 
 get_id(url)
 
